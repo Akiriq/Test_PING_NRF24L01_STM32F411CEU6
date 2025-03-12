@@ -17,6 +17,7 @@ extern UART_HandleTypeDef huart2;
 extern uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 
 
+
 void UART_SendChar(char b)
 {
     //HAL_UART_Transmit(&huart2, (uint8_t *) &b, 1, 200);
@@ -293,6 +294,10 @@ void runRadio(void)
 			UART_SendBufHex((char *)nRF24_payload, payload_length);
 			UART_SendStr("<\r\n");
 			// send back the payload
+
+			for(int i = 0;i < 8000;i++);
+//			uint8_t message[32] = {0xaa,0x44,0x11,0x22,0x55};
+//			send_payload(message, 5);
 			send_payload(nRF24_payload, payload_length);
     	}
     	if(!HAL_GPIO_ReadPin(BP_GPIO_Port, BP_Pin)&& BP_released)
