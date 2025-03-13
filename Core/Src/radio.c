@@ -294,8 +294,8 @@ void runRadio(void)
 			UART_SendBufHex((char *)nRF24_payload, payload_length);
 			UART_SendStr("<\r\n");
 			// send back the payload
-
-			for(int i = 0;i < 8000;i++);
+//			HAL_Delay(100);
+			osDelay(2);
 //			uint8_t message[32] = {0xaa,0x44,0x11,0x22,0x55};
 //			send_payload(message, 5);
 			send_payload(nRF24_payload, payload_length);
